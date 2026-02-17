@@ -614,6 +614,11 @@
       "duration": {
         "type": "unsigned_long"
       },
+      "extended_fields": {
+        "dynamic": false,
+        "properties": {},
+        "type": "object"
+      },
       "external_service": {
         "properties": {
           "connector_name": {
@@ -695,6 +700,17 @@
       },
       "tags": {
         "type": "keyword"
+      },
+      "template": {
+        "properties": {
+          "id": {
+            "type": "keyword"
+          },
+          "version": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
       },
       "title": {
         "fields": {
