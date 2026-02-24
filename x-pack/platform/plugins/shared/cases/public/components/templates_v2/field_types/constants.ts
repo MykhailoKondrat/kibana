@@ -24,10 +24,14 @@ description: A short description of the template
 # tags are optional
 tags:
   - example
+# severity is optional (low, medium, high, critical)
+severity: low
+# category is optional
+category: general
 fields:
-  - name: severity
+  - name: priority
     control: SELECT_BASIC
-    label: Select label
+    label: Priority level
     type: keyword
     metadata:
       options:
