@@ -8,6 +8,7 @@
 import { isEmpty } from 'lodash';
 import type { CasePostRequest } from '../../../common';
 import { GENERAL_CASES_OWNER } from '../../../common';
+import { CASE_EXTENDED_FIELDS } from '../../../common/constants';
 import type { ActionConnector } from '../../../common/types/domain';
 import { CaseSeverity } from '../../../common/types/domain';
 import type { CasesConfigurationUI } from '../../containers/types';
@@ -95,9 +96,9 @@ export const createFormSerializer = (
     syncAlerts,
     extractObservables,
     customFields,
-    templateId: _templateId,
-    templateVersion: _templateVersion,
-    extended_fields: _extendedFields,
+    templateId,
+    templateVersion,
+    [CASE_EXTENDED_FIELDS]: extendedFields,
     ...restData
   } = data;
 
@@ -120,6 +121,10 @@ export const createFormSerializer = (
     settings: { syncAlerts: syncAlerts ?? false, extractObservables: extractObservables ?? false },
     owner: currentConfiguration.owner,
     customFields: transformedCustomFields,
+    ...(extendedFields != null ? { [CASE_EXTENDED_FIELDS]: extendedFields } : {}),
+    ...(templateId && templateVersion
+      ? { template: { id: templateId, version: templateVersion } }
+      : {}),
   };
 };
 
