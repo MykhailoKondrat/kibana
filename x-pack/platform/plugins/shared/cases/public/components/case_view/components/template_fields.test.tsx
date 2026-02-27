@@ -119,13 +119,13 @@ describe('TemplateFields', () => {
   });
 
   it('returns null for unknown field control types', () => {
-    const templateWithUnknown: ParsedTemplate = {
+    const templateWithUnknown = {
       ...mockTemplate,
       definition: {
         name: 'Test',
-        fields: [{ name: 'unknown', control: 'UNKNOWN_CONTROL' as FieldType, type: 'keyword' }],
+        fields: [{ name: 'unknown', control: 'UNKNOWN_CONTROL', type: 'keyword' }],
       },
-    };
+    } as unknown as ParsedTemplate;
     mockUseGetTemplate.mockReturnValue({ data: templateWithUnknown, isLoading: false });
 
     const { container } = renderWithTestingProviders(<TemplateFields {...defaultProps} />);
