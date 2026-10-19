@@ -50,9 +50,7 @@ export const CasesListAppHeader: FC = () => {
     ]
   );
 
-  return (
-    <CasesAppHeader title={PAGE_TITLE} menu={menu} docLink={docLinks.links.cases.createCases} />
-  );
+  return <CasesAppHeader title={PAGE_TITLE} menu={menu} docLink={docLinks.links.cases.overview} />;
 };
 
 CasesListAppHeader.displayName = 'CasesListAppHeader';

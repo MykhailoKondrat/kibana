@@ -8,6 +8,7 @@
 import React from 'react';
 import { createEvent, fireEvent, screen } from '@testing-library/react';
 import { APP_HEADER_TEST_SUBJECTS } from '@kbn/app-header';
+import { openAppMenuOverflow } from '@kbn/app-header/test_helpers';
 
 import { renderWithTestingProviders } from '../../../common/mock';
 import { CREATE_CASE_TITLE } from '../../../common/translations';
@@ -26,7 +27,7 @@ describe('CreateCaseAppHeader', () => {
     expect(screen.getByTestId(APP_HEADER_TEST_SUBJECTS.back)).toBeInTheDocument();
   });
 
-  it('passes docLink and showAddIntegrations to CasesAppHeader', () => {
+  it('passes the create cases docLink, showAddIntegrations and an explicit menu to CasesAppHeader', () => {
     const spy = jest.spyOn(casesAppHeaderModule, 'CasesAppHeader');
 
     renderWithTestingProviders(<CreateCaseAppHeader />);
@@ -35,11 +36,23 @@ describe('CreateCaseAppHeader', () => {
       expect.objectContaining({
         docLink: expect.stringContaining('create-cases'),
         showAddIntegrations: true,
+        menu: { items: [] },
       }),
       expect.anything()
     );
 
     spy.mockRestore();
+  });
+
+  it('shows the documentation item in the overflow menu', async () => {
+    renderWithTestingProviders(<CreateCaseAppHeader />);
+
+    await openAppMenuOverflow();
+
+    expect(await screen.findByTestId(APP_HEADER_TEST_SUBJECTS.menuDocumentation)).toHaveAttribute(
+      'href',
+      expect.stringContaining('create-cases')
+    );
   });
 
   it('navigates to all cases and prevents the anchor default navigation on back click', () => {

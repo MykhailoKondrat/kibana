@@ -39,7 +39,7 @@ describe('CasesListAppHeader', () => {
 
     expect(spy).toHaveBeenCalledWith(
       expect.objectContaining({
-        docLink: expect.stringContaining('create-cases'),
+        docLink: expect.stringMatching(/explore-analyze\/cases$/),
       }),
       expect.anything()
     );
