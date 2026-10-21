@@ -27,3 +27,6 @@
 
 **Q:** How do I request a new feature?
 **A:** Open a feature request issue at https://github.com/elastic/kibana/issues and add the "enhancement" label.
+
+**Q:** How do I get help from the community?
+**A:** Join the Elastic discussion forums at https://discuss.elastic.co or the Kibana Slack workspace.
